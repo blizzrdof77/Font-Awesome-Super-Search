@@ -8,6 +8,15 @@
         <meta content="" name="author" />
         <title> FontAwesome Meta Search Tool | Search by Keyword(s) </title>
         <link href="./css/app.css" rel="stylesheet" />
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125786464-1"></script>
+        <script>
+        	window.dataLayer = window.dataLayer || [];
+        	function gtag(){dataLayer.push(arguments);}
+        	gtag('js', new Date());
+
+        	gtag('config', 'UA-125786464-1');
+        </script>
     </head>
     <body ng-app="FontAwesomeFinder" ng-controller="IndexController">
         <header>
@@ -82,6 +91,5 @@
                 });
             };
         </script>
-        <!-- Google Analytics will go here -->
     </body>
 </html>
