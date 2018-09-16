@@ -1,14 +1,22 @@
 <IfModule mod_rewrite.c>
-  # BEGIN Remote Uploads Fallback
-  RewriteEngine On
-  RewriteBase /suggest/
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_URI} !^/suggest
-  RewriteRule ^suggest/(.*)$ https://fontawesome-super-search.hostsimple.co/$1 [L]
-  # END Remote Uploads Fallback
-</IfModule>
-<IfModule mod_rewrite.c>
+# BEGIN Remote Uploads Fallback
+RewriteEngine On
+RewriteBase /suggest/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !^/suggest
+RewriteCond %{REQUEST_URI} !\.well-known/acme-challenge
+RewriteRule ^suggest/(.*)$ https://awesomeiconsearch.com/$1 [L]
+
 RewriteEngine On
 RewriteRule %{REQUEST_FILENAME} !-f
 RewriteRule ^([a-z-]+)/?$ /$1.html
+</IfModule>
+
+# REDIRECT ALL HTTP TO HTTPS
+<IfModule mod_rewrite.c>
+RewriteEngine On
+# RewriteCond %{HTTP_HOST} ^(.+?)\.hostsimple\.co$ [NC]
+RewriteCond %{HTTP:X-Forwarded-SSL} !on
+RewriteCond %{REQUEST_URI} !\.well-known/acme-challenge
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 </IfModule>
