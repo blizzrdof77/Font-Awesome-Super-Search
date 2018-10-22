@@ -28,7 +28,7 @@
                         <small><small class="white uppercase strong">Icon Search Tool</small></small>
                     </h1>
                     <h4 class="white text-center"> Start typing! </h4><br/>
-                    <input class="text-center form-control" ng-change="search()" ng-model="q" ngfocus="" placeholder="Keyword or Icon Class" results="5" type="search" style="line-height: 2.5rem;padding: 3.7rem 2rem;font-size: 2.6rem;" />
+                    <input id="keyword-text-input-control" class="text-center form-control" ng-change="search()" ng-model="q" ngfocus="" placeholder="Keyword or Icon Class" results="5" type="search" style="line-height: 2.5rem;padding: 3.7rem 2rem;font-size: 2.6rem;" />
                 </div>
             </div>
         </header>
@@ -89,6 +89,7 @@
                             alert('The icon class has been copied to your clipboard!');
                         }, 200);
                 });
+                jQuery('#keyword-text-input-control').click().focus();
             };
         </script>
     </body>
