@@ -20,3 +20,20 @@ RewriteCond %{HTTP:X-Forwarded-SSL} !on
 RewriteCond %{REQUEST_URI} !\.well-known/acme-challenge
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 </IfModule>
+
+# BOTS
+ErrorDocument 503 "Site temporarily disabled for crawling"
+
+# REDIRECT BOTS, CRAWLERS, SPIDERS
+<IfModule mod_rewrite.c>
+#RewriteEngine On
+#RewriteCond %{HTTP_USER_AGENT} ^.*(bot|spider|crawl).*$ [NC]
+#RewriteCond %{REQUEST_URI} !^/robots.txt$
+#RewriteRule .* - [R=503,L]
+</IfModule>
+
+# BLOCK ACCESS TO GIT FOLDERS/FILES
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule "^(.*/)?\.git/" - [R=503,L]
+</IfModule>
